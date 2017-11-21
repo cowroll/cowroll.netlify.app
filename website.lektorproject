@@ -1,0 +1,9 @@
+[project]
+name = Coroll in Netlify
+
+[packages]
+lektor-netlify = 0.1
+
+[servers.production]
+name = Production
+target = netlify://cowroll.netlify.com

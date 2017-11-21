@@ -1,0 +1,8 @@
+*~
+*.bak
+*.pyc
+*.html
+*.pdf
+.netlify
+build
+deploy.sh
