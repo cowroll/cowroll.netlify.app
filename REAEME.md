@@ -18,6 +18,8 @@ create repository called "cowroll.netlify.com" by higebobo (not cowroll)[^1]
     
 ## Deploy
 
+gitのURLはhigeboboかcowrollか注意すること(pluginを使う場合は後者)
+
     $ echo "*~" >> .gitignore
     $ echo "*.bak" >> .gitignore
     $ echo "*.pyc" >> .gitignore
@@ -28,7 +30,7 @@ create repository called "cowroll.netlify.com" by higebobo (not cowroll)[^1]
     $ git commit -m 'First commit'
     $ git remote add origin git@github.com:higebobo/cowroll.netlify.com.git
     $ git remote -v
-    $ git push origin master
+    $ git push -u origin master
 
 ## Netlify
 
@@ -46,6 +48,9 @@ create repository called "cowroll.netlify.com" by higebobo (not cowroll)[^1]
 
 * [^2]: tutorial がうまくいかなかったので lektor-netlify plugin を使う
 * higeboboアカウントでなくてもよくなったのでcowrollに移譲
+* または
+
+        $ git remote add origin git@github.com:cowroll/cowroll.netlify.com.git
 
 #### netlify-cliのインストール
 
