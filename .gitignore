@@ -4,5 +4,6 @@
 *.html
 *.pdf
 .netlify
+.lektor
 build
 deploy.sh
