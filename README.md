@@ -13,9 +13,9 @@ create a project
 
 ## Github
 
-create repository called "cowroll.netlify.com" by higebobo (not cowroll)[^1]
+create repository called "cowroll.netlify.com" by higebobo (not cowroll)<sup id="a1">[1](#f1)</sup>
 
-[^1]: netlifyがusername(not organization)でしかレポジトリを利用できないから
+<b id="f1">1:</b> netlifyがusername(not organization)でしかレポジトリを利用できないから
     
 ## Deploy
 
