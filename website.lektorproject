@@ -3,6 +3,7 @@ name = Coroll in Netlify
 
 [packages]
 lektor-netlify = 0.1
+lektor-embed-x = 0.1.2
 
 [servers.production]
 name = Production
