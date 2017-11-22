@@ -8,6 +8,7 @@ create a project
     $ lecktor quickstart
 
 * Project Name: Cowoll at Netlify
+* Author: higebobo
 * Directory: cowroll.netlify.com
 
 ## Github

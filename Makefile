@@ -5,10 +5,10 @@ LEKTOR=`which lektor`
 server:
 	$(LEKTOR) server -h 0.0.0.0
 
-build:
+gen:
 	$(LEKTOR) build --output-path=${BUILD_DIR}
 
-deploy: build
+deploy: gen
 	./deploy.sh
 
 status:
