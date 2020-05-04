@@ -1,2 +1,0 @@
-#!/bin/sh
-lektor deploy production --key 99b2ceaa518f876df5f2ecf3040feababbb7adb323b8157ca0253b310fceded2

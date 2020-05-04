@@ -1,32 +1,33 @@
-BUILD_DIR=build
-PYTHON=`which python`
-LEKTOR=`which lektor`
+MAKEFLAGS += --warn-undefined-variables
+SHELL := /bin/bash
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := run
 
-server:
-	$(LEKTOR) server -h 0.0.0.0
+# all targets are phony
+.PHONY: $(shell egrep -o ^[a-zA-Z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
-gen:
-	$(LEKTOR) build --output-path=${BUILD_DIR}
+ifneq ("$(wildcard ./.env)","")
+  include ./.env
+endif
 
-deploy-netlify: gen
-	./deploy.sh
+run: ## Run Server
+	lektor server -h 0.0.0.0
 
-deploy: deploy-netlify commit-push
+build: ## Build contents
+	lektor build --output-path=build
 
-status:
-	git status
+#deploy-netlify: gen
+# ./deploy.sh
+deploy: ## Deploy server
+	lektor deploy production --key ${TOKEN}
 
-add:
-	git add .
+#deploy: deploy-netlify commit-push
 
-commit: add
-	git commit -m 'modify'
+clean: ## Clean cache
+	lektor clean
 
-pull:
-	git pull
-	git update
-
-push:
-	git push -u origin master
-
-commit-push: commit push
+help: ## Print this help
+	@echo 'Usage: make [target]'
+	@echo ''
+	@echo 'Targets:'
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)

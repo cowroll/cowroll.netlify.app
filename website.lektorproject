@@ -4,7 +4,8 @@ name = Coroll in Netlify
 [packages]
 lektor-netlify = 0.1
 lektor-embed-x = 0.1.2
+;git+https://github.com/chemicalstorm/lektor-embed-x.git
 
 [servers.production]
 name = Production
-target = netlify://cowroll.netlify.com
+target = netlify://cowroll.netlify.app

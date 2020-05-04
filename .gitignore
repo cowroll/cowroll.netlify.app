@@ -6,4 +6,4 @@
 .netlify
 .lektor
 build
-deploy.sh
+.env
