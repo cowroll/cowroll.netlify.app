@@ -26,6 +26,17 @@ deploy: ## Deploy server
 clean: ## Clean cache
 	lektor clean
 
+first-deploy:
+	netlify deploy -d build
+
+deploy:
+	netlify deploy --prod
+
+foo:
+	yarn netlify deploy --prod -d dist -a [AUTH_TOKEN] -s [SITE_ID]
+	yarn netlify deploy --prod -d dist -a ${NETLIFY_AUTH_TOKEN} -s ${NETLIFY_SITE_ID}
+
+
 help: ## Print this help
 	@echo 'Usage: make [target]'
 	@echo ''
