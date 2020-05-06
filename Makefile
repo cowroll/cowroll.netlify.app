@@ -3,6 +3,8 @@ SHELL := /bin/bash
 .SHELLFLAGS := -eu -o pipefail -c
 .DEFAULT_GOAL := run
 
+BUILD_DIR=build
+
 # all targets are phony
 .PHONY: $(shell egrep -o ^[a-zA-Z_-]+: $(MAKEFILE_LIST) | sed 's/://')
 
@@ -14,7 +16,7 @@ run: ## Run Server
 	lektor server -h 0.0.0.0
 
 build: ## Build contents
-	lektor build --output-path=build
+	lektor build --output-path=${BUILD_DIR}
 
 #deploy-netlify: gen
 # ./deploy.sh
@@ -26,11 +28,14 @@ deploy: ## Deploy server
 clean: ## Clean cache
 	lektor clean
 
-first-deploy:
-	netlify deploy -d build
+auth-netlify:
+	netlify deploy -d ${BUILD_DIR}
+
+#deploy:
+#	netlify deploy --prod
 
 deploy:
-	netlify deploy --prod
+	netlify deploy --prod -d ${BUILD_DIR} -a ${TOKEN} -s ${SITE}
 
 foo:
 	yarn netlify deploy --prod -d dist -a [AUTH_TOKEN] -s [SITE_ID]
