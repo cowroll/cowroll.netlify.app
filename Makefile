@@ -3,44 +3,18 @@ SHELL := /bin/bash
 .SHELLFLAGS := -eu -o pipefail -c
 .DEFAULT_GOAL := run
 
-BUILD_DIR=build
-
-# all targets are phony
-.PHONY: $(shell egrep -o ^[a-zA-Z_-]+: $(MAKEFILE_LIST) | sed 's/://')
-
 ifneq ("$(wildcard ./.env)","")
   include ./.env
 endif
 
-run: ## Run Server
-	lektor server -h 0.0.0.0
+run: ## Run server
+	@gatsby develop
 
-build: ## Build contents
-	lektor build --output-path=${BUILD_DIR}
+build: ## Build site on public directory
+	@gatsby build
 
-#deploy-netlify: gen
-# ./deploy.sh
-deploy: ## Deploy server
-	lektor deploy production --key ${TOKEN}
-
-#deploy: deploy-netlify commit-push
-
-clean: ## Clean cache
-	lektor clean
-
-auth-netlify:
-	netlify deploy -d ${BUILD_DIR}
-
-#deploy:
-#	netlify deploy --prod
-
-deploy:
-	netlify deploy --prod -d ${BUILD_DIR} -a ${TOKEN} -s ${SITE}
-
-foo:
-	yarn netlify deploy --prod -d dist -a [AUTH_TOKEN] -s [SITE_ID]
-	yarn netlify deploy --prod -d dist -a ${NETLIFY_AUTH_TOKEN} -s ${NETLIFY_SITE_ID}
-
+clean: ## Clean cache, public directory
+	@gatsby clean
 
 help: ## Print this help
 	@echo 'Usage: make [target]'
